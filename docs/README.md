@@ -1,7 +1,6 @@
-
 <p align="center">
   <a href="http://github.com/zuiidea/antd-admin">
-    <img alt="antd-admin" height="64" src="./docs/_media/logo.svg">
+    <img alt="antd-admin" height="64" src="./_media/logo.svg">
   </a>
 </p>
 
@@ -25,8 +24,6 @@ A excellent front-end solution for enterprise applications.
 - Documentation - [https://doc.antd-admin.zuiidea.com](https://doc.antd-admin.zuiidea.com)
 - FAQ - [https://doc.antd-admin.zuiidea.com/#/faq](https://doc.antd-admin.zuiidea.com/#/faq)
 - ChangeLog - [https://doc.antd-admin.zuiidea.com/#/change-log](https://doc.antd-admin.zuiidea.com/#/change-log)
-
-English | [简体中文](./README-zh_CN.md) 
 
 ## Features
 

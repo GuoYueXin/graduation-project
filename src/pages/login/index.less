@@ -1,0 +1,86 @@
+@import '~themes/vars';
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  background: url(../../../public/bj01.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  .login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 450px;
+    height: 520px;
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.45);
+    transform: translateX(-50%) translateY(-50%);
+    background: rgba(255, 255, 255, 0.25);
+    .icon {
+      width: 100%;
+      height: 40px;
+      margin-top: 6px;
+      margin-right: 6px;
+      text-align: right;
+      img {
+        width: 60px;
+        height: 40px;
+      }
+    }
+    .title {
+      width: 80%;
+      height: 50px;
+      margin: 50px auto;
+      font-size: 22px;
+      font-weight: 700;
+      color: #eee;
+      text-align: center;
+    }
+    .loginContent {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0 40px;
+      box-sizing: border-box;
+      .inputBox {
+        width: 100%;
+        margin-top: 50px;
+        input {
+          width: 100%;
+          height: 40px;
+          padding: 0;
+          color: #fff;
+          font-size: 16px;
+          margin-bottom: 20px;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #ccc;
+          outline: unset;
+        }
+      }
+      button {
+        width: 100%;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.45);
+        color: #ccc;
+        margin: 50px 0 10px;
+        border: none;
+        outline: unset;
+        cursor: pointer;
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+      }
+      .helpTips {
+        color: #ccc;
+        .register {
+          float: right;
+        }
+        span {
+          cursor: pointer;
+        }
+        span:hover {
+          color: #eee;
+        }
+      }
+    }
+  }
+}
