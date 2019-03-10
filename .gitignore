@@ -9,6 +9,7 @@ package-lock.json
 # ide
 .idea
 .vscode
+.github
 
 # Mac General
 .DS_Store
