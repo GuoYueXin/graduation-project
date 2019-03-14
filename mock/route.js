@@ -14,6 +14,18 @@ const database = [
     },
     route: '/dashboard',
   },
+  {
+    id: '2',
+    icon: 'user-add',
+    name: '注册',
+    zh:{
+      name: '注册'
+    },
+    'pt-br': {
+      name: 'register',
+    },
+    route: '/register',
+  },
 ]
 
 module.exports = {

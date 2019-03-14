@@ -6,7 +6,7 @@ import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
-import { GlobalFooter } from 'ant-design-pro'
+// import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
 import { config, pathMatchRegexp, langFromPath } from 'utils'
 import Error from '../pages/404'
@@ -77,9 +77,10 @@ class PrimaryLayout extends PureComponent {
     )
 
     // Query whether you have permission to enter this page
-    const hasPermission = currentRoute
-      ? permissions.visit.includes(currentRoute.id)
-      : false
+    // const hasPermission = currentRoute
+    //   ? permissions.visit.includes(currentRoute.id)
+    //   : false
+    const hasPermission = true;
 
     // MenuParentId is equal to -1 is not a available menu.
     const menus = newRouteList.filter(_ => _.menuParentId !== '-1')
@@ -134,10 +135,10 @@ class PrimaryLayout extends PureComponent {
               className={styles.backTop}
               target={() => document.querySelector('#primaryLayout')}
             />
-            <GlobalFooter
+            {/* <GlobalFooter
               className={styles.footer}
               copyright={config.copyright}
-            />
+            /> */}
           </div>
         </Layout>
       </Fragment>

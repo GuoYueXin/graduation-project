@@ -36,4 +36,21 @@ module.exports = {
     ],
     defaultLanguage: 'en',
   },
+  menu: [
+    {
+      id: '1',
+      icon: 'laptop',
+      name: 'Dashboard',
+      zhName: '仪表盘',
+      route: '/dashboard',
+    },
+    {
+      id: '2',
+      icon: 'user-add',
+      name: '注册',
+      zhName: '注册',
+      route: '/register',
+    },
+  ],
+  visit: ['1', '2']
 }
