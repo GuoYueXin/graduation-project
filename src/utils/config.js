@@ -46,11 +46,15 @@ module.exports = {
     },
     {
       id: '2',
+      menuParentId: '-1',
       icon: 'user-add',
       name: '注册',
       zhName: '注册',
       route: '/register',
     },
   ],
-  visit: ['1', '2']
+  visit: ['1', '2'],
+  showSilderList: [
+    'dashboard',
+  ],
 }

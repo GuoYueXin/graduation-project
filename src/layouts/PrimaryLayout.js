@@ -6,12 +6,12 @@ import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
-// import { GlobalFooter } from 'ant-design-pro'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
 import { config, pathMatchRegexp, langFromPath } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
 
+const { showSilderList } = config
 const { Content } = Layout
 const { Header, Bread, Sider } = MyLayout
 
@@ -53,11 +53,12 @@ class PrimaryLayout extends PureComponent {
       collapsed,
       permissions,
       notifications,
+      locationPathname,
     } = app
     const { isMobile } = this.state
     const { onCollapseChange } = this
 
-    // Localized route name.
+    const isShowSilder = showSilderList.includes(locationPathname.split('/')[2]);
 
     const lang = langFromPath(location.pathname)
     const newRouteList =
@@ -77,10 +78,10 @@ class PrimaryLayout extends PureComponent {
     )
 
     // Query whether you have permission to enter this page
-    // const hasPermission = currentRoute
-    //   ? permissions.visit.includes(currentRoute.id)
-    //   : false
-    const hasPermission = true;
+    const hasPermission = currentRoute
+      ? permissions.visit.includes(currentRoute.id)
+      : false
+    // const hasPermission = true;
 
     // MenuParentId is equal to -1 is not a available menu.
     const menus = newRouteList.filter(_ => _.menuParentId !== '-1')
@@ -125,8 +126,8 @@ class PrimaryLayout extends PureComponent {
           >
             <Header {...headerProps} />
             <Layout>
-              <Sider {...siderProps} />
-              <Content className={styles.content} style={{ marginLeft: 256 }}>
+              {isShowSilder && <Sider {...siderProps} />}
+              <Content className={styles.content} style={isShowSilder ? { marginLeft: 256 } : { margin: '0 150px' }}>
                 <Bread routeList={newRouteList} />
                 {hasPermission ? children : <Error />}
               </Content>
@@ -135,10 +136,6 @@ class PrimaryLayout extends PureComponent {
               className={styles.backTop}
               target={() => document.querySelector('#primaryLayout')}
             />
-            {/* <GlobalFooter
-              className={styles.footer}
-              copyright={config.copyright}
-            /> */}
           </div>
         </Layout>
       </Fragment>
