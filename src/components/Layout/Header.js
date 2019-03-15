@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import Link from 'umi/link';
 import { Menu, Icon, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
@@ -10,6 +11,7 @@ import config from 'config'
 import styles from './Header.less'
 
 const { SubMenu } = Menu
+const MenuItem = Menu.Item;
 
 @withI18n()
 class Header extends PureComponent {
@@ -22,9 +24,26 @@ class Header extends PureComponent {
       fixed,
       avatar,
       username,
-      notifications,
-      onAllNotificationsRead,
+      // notifications,
+      // onAllNotificationsRead,
     } = this.props
+
+    const leftContent = [
+      <Menu mode="horizontal">
+        <MenuItem key="home">
+          <Link to="#">首页</Link>
+        </MenuItem>
+        <MenuItem key="publish">
+          <Link to="#">发布闲置</Link>
+        </MenuItem>
+        <MenuItem key="myIdle">
+          <Link to="#">我的闲置</Link>
+        </MenuItem>
+        <MenuItem key="myStore">
+          <Link to="#">我的店铺</Link>
+        </MenuItem>
+      </Menu>
+    ];
 
     const rightContent = [
       <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
@@ -78,58 +97,20 @@ class Header extends PureComponent {
     }
 
     rightContent.unshift(
-      <Popover
-        placement="bottomRight"
-        trigger="click"
-        key="notifications"
-        overlayClassName={styles.notificationPopover}
-        getPopupContainer={() => document.querySelector('#layoutHeader')}
-        content={
-          <div className={styles.notification}>
-            <List
-              itemLayout="horizontal"
-              dataSource={notifications}
-              locale={{
-                emptyText: <Trans>You have viewed all notifications.</Trans>,
-              }}
-              renderItem={item => (
-                <List.Item className={styles.notificationItem}>
-                  <List.Item.Meta
-                    title={
-                      <Ellipsis tooltip lines={1}>
-                        {item.title}
-                      </Ellipsis>
-                    }
-                    description={moment(item.date).fromNow()}
-                  />
-                  <Icon
-                    style={{ fontSize: 10, color: '#ccc' }}
-                    type="right"
-                    theme="outlined"
-                  />
-                </List.Item>
-              )}
-            />
-            {notifications.length ? (
-              <div
-                onClick={onAllNotificationsRead}
-                className={styles.clearButton}
-              >
-                <Trans>Clear notifications</Trans>
-              </div>
-            ) : null}
-          </div>
-        }
-      >
-        <Badge
-          count={notifications.length}
-          dot
-          offset={[-10, 10]}
-          className={styles.iconButton}
-        >
-          <Icon className={styles.iconFont} type="bell" />
-        </Badge>
-      </Popover>
+      <Menu mode="horizontal">
+      <MenuItem key="collect">
+          <Link to="#">收藏</Link>
+        </MenuItem>
+        <MenuItem key="message">
+          <Link to="#">消息中心</Link>
+        </MenuItem>
+        <MenuItem key="buyCart">
+          <Link to="#">购物车</Link>
+        </MenuItem>
+        <MenuItem key="service">
+          <Link to="#">联系客服</Link>
+        </MenuItem>
+      </Menu>
     )
 
     return (
@@ -139,6 +120,10 @@ class Header extends PureComponent {
         })}
         id="layoutHeader"
       >
+        <div className={styles.logo}></div>
+        <div className={styles.leftContainer}>
+          {leftContent}
+        </div>
         <div className={styles.rightContainer}>{rightContent}</div>
       </Layout.Header>
     )
