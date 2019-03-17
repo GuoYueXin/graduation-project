@@ -60,8 +60,16 @@ module.exports = {
       zhName: '找回密码',
       route: '/resetPwd',
     },
+    {
+      id: '4',
+      menuParentId: '-1',
+      icon: 'undo',
+      name: '首页',
+      zhName: '首页',
+      route: '/home',
+    },
   ],
-  visit: ['1', '2', '3'],
+  visit: ['1', '2', '3', '4'],
   showSilderList: [
     'dashboard',
   ],
