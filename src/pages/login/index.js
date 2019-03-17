@@ -26,6 +26,11 @@ class Login extends PureComponent {
   render() {
     const { form } = this.props
     const { getFieldDecorator } = form
+    const submit = (e) => {
+      if (e.keyCode === 13) {
+        this.handleOk();
+      }
+    }
 
     return (
       <div className={styles.wrap}>
@@ -43,7 +48,7 @@ class Login extends PureComponent {
                         message: '请输入用户名',
                       },
                     ],
-                  })(<input type="text" />)}
+                  })(<input type="text" autocomplete="off" />)}
                 </FormItem>
                 <FormItem>
                   {getFieldDecorator('password', {
@@ -53,13 +58,13 @@ class Login extends PureComponent {
                         message: '请输入密码',
                       },
                     ],
-                  })(<input type="password" />)}
+                  })(<input type="password" onKeyUp={submit} />)}
                 </FormItem>
               </Form>
             </div>
-            <button onClick={this.handleOk}>Login</button>
+            <button onClick={this.handleOk}>登录</button>
             <div className={styles.helpTips}>
-              <Link to="#" className={styles.forget}>忘记密码</Link>
+              <Link to="#" className={styles.forget}>忘记密码？</Link>
               <Link to="/register" className={styles.register}>注册</Link>
             </div>
           </div>
