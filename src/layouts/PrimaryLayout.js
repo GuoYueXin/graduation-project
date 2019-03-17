@@ -128,7 +128,7 @@ class PrimaryLayout extends PureComponent {
             <Layout>
               {isShowSilder && <Sider {...siderProps} />}
               <Content className={styles.content} style={isShowSilder ? { marginLeft: 256 } : { margin: '0 150px' }}>
-                <Bread routeList={newRouteList} />
+                {isShowSilder && <Bread routeList={newRouteList} />}
                 {hasPermission ? children : <Error />}
               </Content>
             </Layout>
