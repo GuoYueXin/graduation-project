@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import styles from './index.less';
+import Search from './components/search';
 
 @connect(({ loading, home }) => ({ loading, home }))
 class index extends PureComponent {
@@ -8,8 +10,8 @@ class index extends PureComponent {
       msg
     } = this.props.home;
     return (
-      <div>
-        {msg}
+      <div className={styles.container}>
+        <Search />
       </div>
     );
   }
