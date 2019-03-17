@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import Link from 'umi/link';
 import { connect } from 'dva'
 import { Form } from 'antd'
 import { withI18n } from '@lingui/react'
@@ -58,8 +59,8 @@ class Login extends PureComponent {
             </div>
             <button onClick={this.handleOk}>Login</button>
             <div className={styles.helpTips}>
-              <span className={styles.forget}>忘记密码</span>
-              <span className={styles.register}>注册</span>
+              <Link to="#" className={styles.forget}>忘记密码</Link>
+              <Link to="/register" className={styles.register}>注册</Link>
             </div>
           </div>
         </div>
