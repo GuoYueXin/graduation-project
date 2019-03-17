@@ -52,8 +52,16 @@ module.exports = {
       zhName: '注册',
       route: '/register',
     },
+    {
+      id: '3',
+      menuParentId: '-1',
+      icon: 'undo',
+      name: '找回密码',
+      zhName: '找回密码',
+      route: '/resetPwd',
+    },
   ],
-  visit: ['1', '2'],
+  visit: ['1', '2', '3'],
   showSilderList: [
     'dashboard',
   ],

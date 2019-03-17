@@ -64,7 +64,7 @@ class Login extends PureComponent {
             </div>
             <button onClick={this.handleOk}>登录</button>
             <div className={styles.helpTips}>
-              <Link to="#" className={styles.forget}>忘记密码？</Link>
+              <Link to="/resetPwd" className={styles.forget}>忘记密码？</Link>
               <Link to="/register" className={styles.register}>注册</Link>
             </div>
           </div>
