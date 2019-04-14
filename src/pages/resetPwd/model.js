@@ -1,5 +1,9 @@
 import modelExtend from 'dva-model-extend'
 import { model } from 'utils/model'
+import api from 'api'
+import { message } from 'antd'
+
+const { sendMsg, verifyCode, register } = api
 
 export default modelExtend(model, {
   namespace: 'resetPwd',
@@ -11,5 +15,29 @@ export default modelExtend(model, {
     answer1: '',
     question2: '',
     answer2: '',
-  }
+  },
+  effects: {
+    *sendCode({ payload }, { call }) {
+      console.log(payload)
+      const data = yield call(sendMsg, payload)
+      if (data.code === '200') {
+        message.success('验证码已发送')
+      } else {
+        throw data
+      }
+    },
+    *verifyCode({ payload }, { put, call, select }) {
+      const data = yield call(verifyCode, payload)
+      if (data.code === '200') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            step: 1,
+          },
+        })
+      } else {
+        throw data
+      }
+    },
+  },
 })

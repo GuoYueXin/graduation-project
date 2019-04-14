@@ -77,7 +77,7 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/api/v1/weather': '/v3/weather' },
     },
-    '/user/login': {
+    '/user': {
       target: 'http://127.0.0.1:7777',
       changeOrigin: true,
     }

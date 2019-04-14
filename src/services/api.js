@@ -4,6 +4,9 @@ export default {
   queryUserInfo: '/api/v1/user',
   logoutUser: '/api/v1/user/logout',
   loginUser: 'POST /user/login',
+  sendMsg: 'POST /user/sendCode',
+  verifyCode: 'POST /user/verifyCode',
+  register: 'POST /user/register',
 
   queryUser: '/user/:id',
   queryUserList: '/users',

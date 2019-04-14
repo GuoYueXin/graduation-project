@@ -3,26 +3,45 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { withI18n } from '@lingui/react'
 import styles from './index.less'
-import { Steps } from 'antd';
-import FirstPage from './components/firstPage';
-import SecondPage from './components/secondPage';
-import ThirdPage from './components/thirdPage';
-import FourthPage from './components/fourthPage';
+import { Steps } from 'antd'
+import FirstPage from './components/firstPage'
+import SecondPage from './components/secondPage'
+import ThirdPage from './components/thirdPage'
+import FourthPage from './components/fourthPage'
 
-const Step = Steps.Step;
+const Step = Steps.Step
 
 @withI18n()
 @connect(({ loading, dispatch, register }) => ({ loading, dispatch, register }))
 class Register extends PureComponent {
-
-  changeStep = (payload) => {
-    const { dispatch } = this.props;
+  changeStep = payload => {
+    const { dispatch } = this.props
     dispatch({
       type: 'register/updateState',
       payload: {
-        ...payload
-      }
-    });
+        ...payload,
+      },
+    })
+  }
+
+  handleSend = payload => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'register/sendCode',
+      payload: {
+        ...payload,
+      },
+    })
+  }
+
+  handleVerify = payload => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'register/verifyCode',
+      payload: {
+        ...payload,
+      },
+    })
   }
 
   render() {
@@ -32,15 +51,11 @@ class Register extends PureComponent {
       username,
       phoneNumber,
       password,
-      question1,
-      question2,
-      answer1,
-      answer2,
-    } = this.props.register;
+    } = this.props.register
     const stepProps = {
       current: step,
       labelPlacement: 'vertical',
-      style: { borderBottom: '1px solid #999', padding: '0 30px 20px' }
+      style: { borderBottom: '1px solid #999', padding: '0 30px 20px' },
     }
 
     const firstProps = {
@@ -57,10 +72,9 @@ class Register extends PureComponent {
 
     const thirdProps = {
       changeStep: this.changeStep,
-      question1,
-      question2,
-      answer1,
-      answer2,
+      handleVerify: this.handleVerify,
+      handleSend: this.handleSend,
+      phoneNumber,
     }
 
     return (
@@ -68,7 +82,7 @@ class Register extends PureComponent {
         <Steps {...stepProps}>
           <Step title="设置账号" />
           <Step title="设置密码" />
-          <Step title="设置密保问题" />
+          <Step title="验证手机号" />
           <Step title="注册成功" />
         </Steps>
         <div className={styles.content}>
