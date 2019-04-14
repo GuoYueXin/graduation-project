@@ -2,7 +2,7 @@ module.exports = {
   siteName: 'AntD Admin',
   copyright: 'Ant Design Admin  © 2018 zuiidea',
   logoPath: '/logo.svg',
-  apiPrefix: '/api/v1',
+  apiPrefix: '',
   fixedHeader: true, // sticky primary layout header
 
   /* Layout configuration, specify which layout to use for route. */
@@ -70,7 +70,5 @@ module.exports = {
     },
   ],
   visit: ['1', '2', '3', '4'],
-  showSilderList: [
-    'dashboard',
-  ],
+  showSilderList: ['dashboard'],
 }

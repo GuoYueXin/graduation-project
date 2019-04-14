@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'umi/link';
+import Link from 'umi/link'
 import { connect } from 'dva'
 import { Form } from 'antd'
 import { withI18n } from '@lingui/react'
@@ -26,9 +26,9 @@ class Login extends PureComponent {
   render() {
     const { form } = this.props
     const { getFieldDecorator } = form
-    const submit = (e) => {
+    const submit = e => {
       if (e.keyCode === 13) {
-        this.handleOk();
+        this.handleOk()
       }
     }
 
@@ -48,7 +48,7 @@ class Login extends PureComponent {
                         message: '请输入用户名',
                       },
                     ],
-                  })(<input type="text" autocomplete="off" />)}
+                  })(<input type="text" autoComplete="off" />)}
                 </FormItem>
                 <FormItem>
                   {getFieldDecorator('password', {
@@ -64,8 +64,12 @@ class Login extends PureComponent {
             </div>
             <button onClick={this.handleOk}>登录</button>
             <div className={styles.helpTips}>
-              <Link to="/resetPwd" className={styles.forget}>忘记密码？</Link>
-              <Link to="/register" className={styles.register}>注册</Link>
+              <Link to="/resetPwd" className={styles.forget}>
+                忘记密码？
+              </Link>
+              <Link to="/register" className={styles.register}>
+                注册
+              </Link>
             </div>
           </div>
         </div>

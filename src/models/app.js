@@ -16,11 +16,9 @@ export default {
   state: {
     user: {},
     permissions: {
-      visit
+      visit,
     },
-    routeList: [
-      ...menu
-    ],
+    routeList: [...menu],
     locationPathname: '',
     locationQuery: {},
     theme: store.get('theme') || 'light',
@@ -68,17 +66,18 @@ export default {
   },
   effects: {
     *query({ payload }, { call, put, select }) {
-      const { success, user } = yield call(queryUserInfo, payload)
+      // const { success, user } = yield call(queryUserInfo, payload)
       const { locationPathname } = yield select(_ => _.app)
+      const { user = { id: -1 } } = yield select(_ => _.login)
 
-      if (success && user) {
+      if (user.id !== -1) {
         yield put({
           type: 'updateState',
           payload: {
             user,
           },
         })
-        if (pathMatchRegexp(['/','/login'], window.location.pathname)) {
+        if (pathMatchRegexp(['/', '/login'], window.location.pathname)) {
           router.push({
             pathname: '/home',
           })
@@ -94,12 +93,18 @@ export default {
     },
 
     *signOut({ payload }, { call, put }) {
-      const data = yield call(logoutUser)
-      if (data.success) {
-        router.push('/login');
-      } else {
-        throw data
-      }
+      // const data = yield call(logoutUser)
+      // if (data.success) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          user: {},
+        },
+      })
+      router.push('/login')
+      // } else {
+      //   throw data
+      // }
     },
   },
   reducers: {

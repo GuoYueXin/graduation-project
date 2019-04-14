@@ -6,13 +6,21 @@ const { loginUser } = api
 export default {
   namespace: 'login',
 
-  state: {},
+  state: {
+    user: {},
+  },
 
   effects: {
     *login({ payload }, { put, call, select }) {
       const data = yield call(loginUser, payload)
       const { locationQuery } = yield select(_ => _.app)
-      if (data.success) {
+      if (data.code === '200') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            user: data.data,
+          },
+        })
         const { from } = locationQuery
         yield put({ type: 'app/query' })
         if (!pathMatchRegexp('/login', from)) {
@@ -23,6 +31,14 @@ export default {
         }
       } else {
         throw data
+      }
+    },
+  },
+  reducers: {
+    updateState(state, { payload }) {
+      return {
+        ...state,
+        ...payload,
       }
     },
   },

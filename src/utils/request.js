@@ -60,9 +60,9 @@ export default function request(options) {
       }
 
       return Promise.resolve({
-        success: true,
-        message: statusText,
-        statusCode: status,
+        // success: true,
+        // message: statusText,
+        // statusCode: status,
         ...result,
       })
     })

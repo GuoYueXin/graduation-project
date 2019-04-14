@@ -77,6 +77,10 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/api/v1/weather': '/v3/weather' },
     },
+    '/user/login': {
+      target: 'http://127.0.0.1:7777',
+      changeOrigin: true,
+    }
   },
   alias: {
     api: resolve(__dirname, './src/services/'),

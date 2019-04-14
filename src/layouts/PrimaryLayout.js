@@ -58,7 +58,7 @@ class PrimaryLayout extends PureComponent {
     const { isMobile } = this.state
     const { onCollapseChange } = this
 
-    const isShowSilder = showSilderList.includes(locationPathname.split('/')[2]);
+    const isShowSilder = showSilderList.includes(locationPathname.split('/')[2])
 
     const lang = langFromPath(location.pathname)
     const newRouteList =
@@ -91,7 +91,7 @@ class PrimaryLayout extends PureComponent {
       collapsed,
       notifications,
       onCollapseChange,
-      avatar: user.avatar,
+      avatar: user.userIcon,
       username: user.username,
       fixed: config.fixedHeader,
       onAllNotificationsRead() {
@@ -127,7 +127,12 @@ class PrimaryLayout extends PureComponent {
             <Header {...headerProps} />
             <Layout>
               {isShowSilder && <Sider {...siderProps} />}
-              <Content className={styles.content} style={isShowSilder ? { marginLeft: 256 } : { margin: '0 150px' }}>
+              <Content
+                className={styles.content}
+                style={
+                  isShowSilder ? { marginLeft: 256 } : { margin: '0 150px' }
+                }
+              >
                 {isShowSilder && <Bread routeList={newRouteList} />}
                 {hasPermission ? children : <Error />}
               </Content>

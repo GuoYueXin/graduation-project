@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'umi/link';
+import Link from 'umi/link'
 import { Menu, Icon, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
@@ -11,7 +11,7 @@ import config from 'config'
 import styles from './Header.less'
 
 const { SubMenu } = Menu
-const MenuItem = Menu.Item;
+const MenuItem = Menu.Item
 
 @withI18n()
 class Header extends PureComponent {
@@ -42,8 +42,8 @@ class Header extends PureComponent {
         <MenuItem key="myStore">
           <Link to="#">我的店铺</Link>
         </MenuItem>
-      </Menu>
-    ];
+      </Menu>,
+    ]
 
     const rightContent = [
       <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
@@ -53,14 +53,16 @@ class Header extends PureComponent {
               <span style={{ color: '#999', marginRight: 4 }}>
                 <Trans>Hi,</Trans>
               </span>
-              <span>{username}</span>
+              <span>{username ? username : '请登录'}</span>
               <Avatar style={{ marginLeft: 8 }} src={avatar} />
             </Fragment>
           }
         >
-          <Menu.Item key="SignOut">
-            <Trans>退出登录</Trans>
-          </Menu.Item>
+          {username && (
+            <Menu.Item key="SignOut">
+              <Trans>退出登录</Trans>
+            </Menu.Item>
+          )}
         </SubMenu>
       </Menu>,
     ]
@@ -98,7 +100,7 @@ class Header extends PureComponent {
 
     rightContent.unshift(
       <Menu mode="horizontal">
-      <MenuItem key="collect">
+        <MenuItem key="collect">
           <Link to="#">收藏</Link>
         </MenuItem>
         <MenuItem key="message">
@@ -120,10 +122,8 @@ class Header extends PureComponent {
         })}
         id="layoutHeader"
       >
-        <div className={styles.logo}></div>
-        <div className={styles.leftContainer}>
-          {leftContent}
-        </div>
+        <div className={styles.logo} />
+        <div className={styles.leftContainer}>{leftContent}</div>
         <div className={styles.rightContainer}>{rightContent}</div>
       </Layout.Header>
     )
