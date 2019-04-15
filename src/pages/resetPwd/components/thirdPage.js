@@ -7,18 +7,18 @@ const confirm = Modal.confirm;
 
 @Form.create()
 class thirdPage extends Component {
-  handleConfirm = (num) => {
-    const { changeStep, form } = this.props;
+  handleConfirm = () => {
+    console.log(11111);
+    const { handleReset, form } = this.props;
     const { validateFieldsAndScroll } = form;
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
         return
       } else {
         const payload = {
-          step: num,
           password: values.pwd,
         }
-        changeStep(payload);
+        handleReset(payload);
       }
     })
   }
@@ -51,7 +51,7 @@ class thirdPage extends Component {
         title: '您确定要返回上一步吗?',
         content: '返回上一步本次编辑将不会保留！',
         onOk() {
-          changeStep({ step: 1 })
+          changeStep({ step: 0 })
         },
         okText: '确定',
         cancelText: '取消',
@@ -89,7 +89,7 @@ class thirdPage extends Component {
           })(<Input placeholder="请再次输入您的密码" type="password" />)}
         </FormItem>
         <div>
-          <Button type="primary" style={{ margin: '0 128px' }} onClick={() => this.handleConfirm(3)}>下一步</Button>
+          <Button type="primary" style={{ margin: '0 128px' }} onClick={this.handleConfirm}>下一步</Button>
           <Button onClick={showConfirm}>上一步</Button>
         </div>
       </Form>

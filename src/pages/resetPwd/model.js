@@ -3,7 +3,7 @@ import { model } from 'utils/model'
 import api from 'api'
 import { message } from 'antd'
 
-const { sendMsg, verifyCode, register } = api
+const { sendMsg, verifyCode, resetPwd } = api
 
 export default modelExtend(model, {
   namespace: 'resetPwd',
@@ -18,7 +18,6 @@ export default modelExtend(model, {
   },
   effects: {
     *sendCode({ payload }, { call }) {
-      console.log(payload)
       const data = yield call(sendMsg, payload)
       if (data.code === '200') {
         message.success('验证码已发送')
@@ -39,5 +38,23 @@ export default modelExtend(model, {
         throw data
       }
     },
+    *forgetPwd({ payload }, { put, call, select }) {
+      const { phoneNumber } = yield select(_ => _.resetPwd);
+      console.log('number', phoneNumber);
+      const params = {
+        phoneNumber,
+        ...payload,
+      }
+      console.log(params)
+      const data = yield call(resetPwd, params);
+      if (data.code === '200') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            step: 2
+          }
+        });
+      }
+    }
   },
 })

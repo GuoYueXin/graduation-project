@@ -24,6 +24,12 @@ class ResetPwd extends PureComponent {
   handleSend = payload => {
     const { dispatch } = this.props
     dispatch({
+      type: 'resetPwd/updateState',
+      payload: {
+        ...payload,
+      },
+    })
+    dispatch({
       type: 'resetPwd/sendCode',
       payload: {
         ...payload,
@@ -41,6 +47,16 @@ class ResetPwd extends PureComponent {
     })
   }
 
+  handleReset = payload => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'resetPwd/forgetPwd',
+      payload: {
+        ...payload,
+      },
+    });
+  }
+
   render() {
     const { step, phoneNumber, password } = this.props.resetPwd
     const stepProps = {
@@ -56,6 +72,7 @@ class ResetPwd extends PureComponent {
     }
 
     const thirdProps = {
+      handleReset: this.handleReset,
       changeStep: this.changeStep,
       password,
     }

@@ -7,6 +7,7 @@ export default {
   sendMsg: 'POST /user/sendCode',
   verifyCode: 'POST /user/verifyCode',
   register: 'POST /user/register',
+  resetPwd: 'POST /user/updatePwd',
 
   queryUser: '/user/:id',
   queryUserList: '/users',
