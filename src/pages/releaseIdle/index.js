@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { withI18n } from '@lingui/react'
 import styles from './index.less'
+import Model from  './components/model';
 
 
 @withI18n()
@@ -10,10 +11,10 @@ import styles from './index.less'
 class releaseIdle extends PureComponent {
 
   render() {
-    const { test } = this.props.releaseIdle;
+    // const { test } = this.props.releaseIdle;
     return (
       <div className={styles.mainWrap}>
-        添加商品{test}
+        <Model />
       </div>
     )
   }
