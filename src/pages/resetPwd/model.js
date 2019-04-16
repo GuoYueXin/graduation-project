@@ -45,7 +45,6 @@ export default modelExtend(model, {
         phoneNumber,
         ...payload,
       }
-      console.log(params)
       const data = yield call(resetPwd, params);
       if (data.code === '200') {
         yield put({

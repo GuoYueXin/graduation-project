@@ -1,15 +1,13 @@
 /* global window */
 
-import { router } from 'utils'
+import { router, delSession } from 'utils'
 import { stringify } from 'qs'
 import store from 'store'
 import { queryLayout, pathMatchRegexp } from 'utils'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
-import api from 'api'
 import config from 'config'
 
 const { menu, visit } = config
-const { logoutUser, queryUserInfo } = api
 
 export default {
   namespace: 'app',
@@ -93,18 +91,14 @@ export default {
     },
 
     *signOut({ payload }, { call, put }) {
-      // const data = yield call(logoutUser)
-      // if (data.success) {
       yield put({
         type: 'updateState',
         payload: {
           user: {},
         },
       })
+      delSession('isLogin');
       router.push('/login')
-      // } else {
-      //   throw data
-      // }
     },
   },
   reducers: {

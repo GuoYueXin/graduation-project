@@ -243,6 +243,18 @@ export function getLocale() {
   return langFromPath(window.location.pathname)
 }
 
+export function setSession(key, value) {
+  window.sessionStorage.setItem(key, value);
+}
+
+export function getSession(key) {
+  window.sessionStorage.getItem(key);
+}
+
+export function delSession(key) {
+  window.sessionStorage.removeItem(key);
+}
+
 export function setLocale(language) {
   if (getLocale() !== language) {
     umiRouter.push({

@@ -1,4 +1,4 @@
-import { router, pathMatchRegexp } from 'utils'
+import { router, pathMatchRegexp, setSession } from 'utils'
 import api from 'api'
 
 const { loginUser } = api
@@ -15,6 +15,7 @@ export default {
       const data = yield call(loginUser, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.code === '200') {
+        setSession('isLogin', 'yes');
         yield put({
           type: 'updateState',
           payload: {
