@@ -31,10 +31,10 @@ class Header extends PureComponent {
     const leftContent = [
       <Menu mode="horizontal">
         <MenuItem key="home">
-          <Link to="#">首页</Link>
+          <Link to="/home">首页</Link>
         </MenuItem>
         <MenuItem key="publish">
-          <Link to="#">发布闲置</Link>
+          <Link to="/releaseIdle">发布闲置</Link>
         </MenuItem>
         <MenuItem key="myIdle">
           <Link to="#">我的闲置</Link>
