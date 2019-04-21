@@ -9,6 +9,9 @@ export default {
   register: 'POST /user/register',
   resetPwd: 'POST /user/updatePwd',
 
+  // goods
+  addGoods: 'POST /goods/addGoods',
+
   queryUser: '/user/:id',
   queryUserList: '/users',
   updateUser: 'Patch /user/:id',

@@ -80,6 +80,14 @@ export default {
     '/user': {
       target: 'http://127.0.0.1:7777',
       changeOrigin: true,
+    },
+    '/goods': {
+      target: 'http://127.0.0.1:7777',
+      changeOrigin: true,
+    },
+    '/uploadFile': {
+      target: 'http://127.0.0.1:7777',
+      changeOrigin: true,
     }
   },
   alias: {

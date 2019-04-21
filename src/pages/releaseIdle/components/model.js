@@ -27,21 +27,26 @@ class model extends Component {
 
   handleCancel = () => this.setState({ previewVisible: false })
 
-  handleChange = ({ fileList }) => this.setState({ fileList })
+  handleChange = info => {
+    const { onChange } = this.props
+    onChange(info)
+    const { fileList } = info
+    this.setState({ fileList })
+  }
 
   handleConfirm() {
-    const { form } = this.props
+    const { form, onHandleConfirm } = this.props
     const { validateFieldsAndScroll } = form
     validateFieldsAndScroll((errors, values) => {
       if (!errors) {
-        console.log(values)
+        onHandleConfirm(values)
       }
     })
   }
 
   render() {
     const { form } = this.props
-    const { previewVisible, previewImage, fileList } = this.state
+    const { previewVisible, previewImage, fileList, priceValue } = this.state
     const { getFieldDecorator } = form
     const formItemLayout = {
       labelCol: {
@@ -53,6 +58,7 @@ class model extends Component {
         sm: { span: 16 },
       },
     }
+
     const uploadButton = (
       <div className={styles.uploadWrap}>
         <Icon type="plus" style={{ fontSize: 32, marginTop: 16 }} />
@@ -62,7 +68,7 @@ class model extends Component {
     return (
       <Form {...formItemLayout} style={{ width: 550, margin: '0 auto' }}>
         <FormItem label="商品名称">
-          {getFieldDecorator('goodName', {
+          {getFieldDecorator('goodsName', {
             rules: [
               {
                 required: true,
@@ -72,7 +78,7 @@ class model extends Component {
           })(<Input placeholder="请输入商品名称" />)}
         </FormItem>
         <FormItem label="商品类别">
-          {getFieldDecorator('goodType', {
+          {getFieldDecorator('goodsType', {
             rules: [
               {
                 required: true,
@@ -81,14 +87,14 @@ class model extends Component {
             ],
           })(
             <Select placeholder="请选择商品类别">
-              <Option value="0">学习用品</Option>
-              <Option value="1">生活用品</Option>
-              <Option value="2">娱乐用品</Option>
+              <Option value={0}>学习用品</Option>
+              <Option value={1}>生活用品</Option>
+              <Option value={2}>娱乐用品</Option>
             </Select>
           )}
         </FormItem>
         <FormItem label="商品价格">
-          {getFieldDecorator('goodPrice', {
+          {getFieldDecorator('goodsPrice', {
             rules: [
               {
                 required: true,
@@ -98,7 +104,7 @@ class model extends Component {
           })(<Input placeholder="请输入商品价格" />)}
         </FormItem>
         <FormItem label="商品图片">
-          {getFieldDecorator('goodPic', {
+          {getFieldDecorator('goodsPic', {
             rules: [
               {
                 required: true,
@@ -108,7 +114,7 @@ class model extends Component {
           })(
             <div>
               <Upload
-                action=""
+                action="http://127.0.0.1:7000/uploadFile"
                 listType="picture-card"
                 onPreview={this.handlePreview}
                 onChange={this.handleChange}
@@ -131,7 +137,7 @@ class model extends Component {
           )}
         </FormItem>
         <FormItem label="商品描述">
-          {getFieldDecorator('goodDesc', {
+          {getFieldDecorator('goodsDesc', {
             rules: [
               {
                 required: true,
