@@ -248,7 +248,7 @@ export function setSession(key, value) {
 }
 
 export function getSession(key) {
-  window.sessionStorage.getItem(key);
+  return window.sessionStorage.getItem(key);
 }
 
 export function delSession(key) {

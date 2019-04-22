@@ -4,7 +4,7 @@ import Link from 'umi/link'
 import { Menu, Icon, Layout, Avatar, Popover, Badge, List } from 'antd'
 import { Ellipsis } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
-import { setLocale } from 'utils'
+import { setLocale, getSession } from 'utils'
 import moment from 'moment'
 import classnames from 'classnames'
 import config from 'config'
@@ -12,6 +12,7 @@ import styles from './Header.less'
 
 const { SubMenu } = Menu
 const MenuItem = Menu.Item
+// const isLogin = getSession('isLogin');
 
 @withI18n()
 class Header extends PureComponent {
@@ -33,15 +34,15 @@ class Header extends PureComponent {
         <MenuItem key="home">
           <Link to="/home">首页</Link>
         </MenuItem>
-        <MenuItem key="publish">
+        {getSession('isLogin') === 'yes' && <MenuItem key="publish">
           <Link to="/releaseIdle">发布闲置</Link>
-        </MenuItem>
-        <MenuItem key="myIdle">
+        </MenuItem>}
+        {getSession('isLogin') === 'yes' && <MenuItem key="myIdle">
           <Link to="#">我的闲置</Link>
-        </MenuItem>
-        <MenuItem key="myStore">
+        </MenuItem>}
+        {getSession('isLogin') === 'yes' && <MenuItem key="myStore">
           <Link to="#">我的店铺</Link>
-        </MenuItem>
+        </MenuItem>}
       </Menu>,
     ]
 
@@ -53,7 +54,7 @@ class Header extends PureComponent {
               <span style={{ color: '#999', marginRight: 4 }}>
                 <Trans>Hi,</Trans>
               </span>
-              <span>{username ? username : '请登录'}</span>
+              <span>{username ? username : <Link to="/login" >请登录</Link>}</span>
               <Avatar style={{ marginLeft: 8 }} src={avatar} />
             </Fragment>
           }
@@ -98,7 +99,7 @@ class Header extends PureComponent {
       )
     }
 
-    rightContent.unshift(
+    getSession('isLogin') === 'yes' && rightContent.unshift(
       <Menu mode="horizontal">
         <MenuItem key="collect">
           <Link to="#">收藏</Link>

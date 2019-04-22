@@ -1,4 +1,4 @@
-import { router, pathMatchRegexp, setSession } from 'utils'
+import { router, pathMatchRegexp, setSession, delSession } from 'utils'
 import api from 'api'
 
 const { loginUser } = api
@@ -8,6 +8,11 @@ export default {
 
   state: {
     user: {},
+  },
+  subscriptions: {
+    setupHistory({ dispatch, history }) {
+      delSession('isLogin');
+    }
   },
 
   effects: {

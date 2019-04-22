@@ -35,7 +35,6 @@ export default {
           ],
           update: routes => {
             if (!i18n) return routes
-
             const newRoutes = []
             for (const item of routes[0].routes) {
               newRoutes.push(item)
