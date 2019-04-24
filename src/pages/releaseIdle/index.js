@@ -39,6 +39,7 @@ class releaseIdle extends PureComponent {
       payload: {
         ...payload,
         goodsPrice: parseFloat(payload.goodsPrice),
+        goodsNum: parseInt(payload.goodsNum),
         goodsPic,
       },
     })

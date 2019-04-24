@@ -13,6 +13,7 @@ export default modelExtend(model, {
     goodsPrice: '',
     goodsPic: '',
     goodsDesc: '',
+    goodsNum: 1,
   },
   effects: {
     *addGoods({ payload }, { call, put, select }) {

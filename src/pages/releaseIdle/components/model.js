@@ -103,6 +103,16 @@ class model extends Component {
             ],
           })(<Input placeholder="请输入商品价格" />)}
         </FormItem>
+        <FormItem label="商品库存">
+          {getFieldDecorator('goodsNum', {
+            rules: [
+              {
+                required: true,
+                message: '请输入商品库存',
+              },
+            ],
+          })(<Input placeholder="请输入商品库存" />)}
+        </FormItem>
         <FormItem label="商品图片">
           {getFieldDecorator('goodsPic', {
             rules: [
@@ -114,7 +124,7 @@ class model extends Component {
           })(
             <div>
               <Upload
-                action="http://127.0.0.1:7000/uploadFile"
+                action="/uploadFile"
                 listType="picture-card"
                 onPreview={this.handlePreview}
                 onChange={this.handleChange}
