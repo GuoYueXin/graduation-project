@@ -21,6 +21,7 @@ export default {
       const { locationQuery } = yield select(_ => _.app)
       if (data.code === '200') {
         setSession('isLogin', 'yes');
+        setSession('user', JSON.stringify(data.data))
         yield put({
           type: 'updateState',
           payload: {

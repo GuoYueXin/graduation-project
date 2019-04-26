@@ -7,7 +7,7 @@ import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
 import { enquireScreen, unenquireScreen } from 'enquire-js'
-import { config, pathMatchRegexp, langFromPath } from 'utils'
+import { config, pathMatchRegexp, langFromPath, getSession } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
 
@@ -47,7 +47,6 @@ class PrimaryLayout extends PureComponent {
   render() {
     const { app, location, dispatch, children } = this.props
     const {
-      user,
       theme,
       routeList,
       collapsed,
@@ -55,6 +54,8 @@ class PrimaryLayout extends PureComponent {
       notifications,
       locationPathname,
     } = app
+    const user = JSON.parse(getSession('user'));
+    console.log(user);
     const { isMobile } = this.state
     const { onCollapseChange } = this
 

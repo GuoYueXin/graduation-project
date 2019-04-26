@@ -11,6 +11,7 @@ export default {
 
   // goods
   addGoods: 'POST /goods/addGoods',
+  queryGoods: '/goods/queryGoods',
 
   queryUser: '/user/:id',
   queryUserList: '/users',

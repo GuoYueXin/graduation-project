@@ -1,34 +1,46 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Link from 'umi/link'
-import { Card, Row, Col } from 'antd'
+import { Card, Row, Col, Pagination } from 'antd'
 import styles from './goodsContent.less'
 
 const { Meta } = Card
 
 class goodsContent extends Component {
   render() {
+    const { data, pageOption, onChangePage } = this.props;
+    const pageProps = {
+      ...pageOption,
+      onChange: onChangePage,
+    }
+    const renderContent = data.map(ele => {
+      return (
+        <Col md={8} xxl={6} className={styles.item}>
+          <Card
+            hoverable
+            style={{ width: 220 }}
+            cover={
+              <img
+                alt={ele.goodsName}
+                src={`http://127.0.0.1:7777/imgs/${ele.goodsPic.split('|')[0]}`}
+                style={{ width: '100%', height: 240 }}
+              />
+            }
+          >
+            <Meta
+              title={ele.goodsName}
+              description={`${ele.goodsDesc.slice(0, 10)}...`}
+            />
+          </Card>
+        </Col>
+      )
+    })
     return (
       <Row gutter={16} className={styles.wrap}>
-        <Link to="/register">
-          <Col md={8} lg={6} className={styles.item}>
-            <Card
-              hoverable
-              style={{ width: 220 }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                />
-              }
-            >
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
-          </Col>
-        </Link>
+        {/*<Link to="/register">*/}
+        {renderContent}
+        {/*</Link>*/}
+        <Pagination {...pageProps} />
       </Row>
     )
   }

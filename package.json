@@ -34,6 +34,7 @@
     "react-draft-wysiwyg": "^1.13.0",
     "react-helmet": "^5.2.0",
     "react-highcharts": "^16.0.2",
+    "react-lazyload": "^2.5.0",
     "react-perfect-scrollbar": "^1.4.2",
     "recharts": "^1.5.0",
     "store": "^2.0.12"
