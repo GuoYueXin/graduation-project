@@ -54,8 +54,7 @@ class PrimaryLayout extends PureComponent {
       notifications,
       locationPathname,
     } = app
-    const user = JSON.parse(getSession('user'));
-    console.log(user);
+    const user = JSON.parse(getSession('user'))
     const { isMobile } = this.state
     const { onCollapseChange } = this
 

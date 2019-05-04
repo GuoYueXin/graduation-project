@@ -6,20 +6,50 @@ import GoodsContent from './components/goodsContent'
 
 @connect(({ loading, home }) => ({ loading, home }))
 class index extends PureComponent {
+  onChangePage = (page, pageSize) => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'home/query',
+      payload: {
+        current: page,
+        pageSize,
+      },
+    })
+  }
 
-  onChangePage = (payload) => {
-    const { dispatch } = this.props;
-    console.log(payload);
-    // dispatch({
-    //   type: 'home/query',
-    //   payload: {
-    //     ...payload
-    //   }
-    // });
+  onSearch = value => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'home/query',
+      payload: {
+        keyWords: value,
+      },
+    })
+  }
+
+  onChangeType = goodsType => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'home/updateState',
+      payload: {
+        goodsType,
+      },
+    })
+    dispatch({
+      type: 'home/query',
+      payload: {
+        goodsType,
+      },
+    })
   }
 
   render() {
-    const { msg, data, pageOption } = this.props.home;
+    const { data, pageOption, goodsType } = this.props.home
+    const searchProps = {
+      goodsType,
+      onChangeType: this.onChangeType,
+      onSearch: this.onSearch,
+    }
     const goodsProps = {
       data,
       pageOption,
@@ -27,7 +57,7 @@ class index extends PureComponent {
     }
     return (
       <div className={styles.container}>
-        <Search />
+        <Search {...searchProps} />
         <GoodsContent {...goodsProps} />
       </div>
     )

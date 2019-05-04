@@ -8,7 +8,7 @@ const { Meta } = Card
 
 class goodsContent extends Component {
   render() {
-    const { data, pageOption, onChangePage } = this.props;
+    const { data, pageOption, onChangePage } = this.props
     const pageProps = {
       ...pageOption,
       onChange: onChangePage,
@@ -36,12 +36,17 @@ class goodsContent extends Component {
       )
     })
     return (
-      <Row gutter={16} className={styles.wrap}>
-        {/*<Link to="/register">*/}
-        {renderContent}
-        {/*</Link>*/}
-        <Pagination {...pageProps} />
-      </Row>
+      <div>
+        <Row gutter={16} className={styles.wrap}>
+          {/*<Link to="/register">*/}
+          {renderContent}
+          {/*</Link>*/}
+        </Row>
+        <Pagination
+          {...pageProps}
+          style={{ float: 'right', marginBottom: 30 }}
+        />
+      </div>
     )
   }
 }
