@@ -6,6 +6,8 @@ export default {
   ignoreMomentLocale: true,
   targets: { ie: 9 },
   treeShaking: true,
+  history: 'hash',
+  // hashHistory: true,
   plugins: [
     [
       // https://umijs.org/plugin/umi-plugin-react.html

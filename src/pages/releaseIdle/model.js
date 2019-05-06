@@ -1,4 +1,5 @@
 import modelExtend from 'dva-model-extend'
+import { getSession } from 'utils'
 import { model } from 'utils/model'
 import api from 'api'
 import { message } from 'antd'
@@ -17,7 +18,8 @@ export default modelExtend(model, {
   },
   effects: {
     *addGoods({ payload }, { call, put, select }) {
-      const { user } = yield select(_ => _.app)
+      const user = JSON.parse(getSession('user'))
+      console.log(user)
       const params = {
         ...payload,
         userId: user.userId,

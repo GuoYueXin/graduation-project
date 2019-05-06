@@ -15,32 +15,34 @@ class goodsContent extends Component {
     }
     const renderContent = data.map(ele => {
       return (
-        <Col md={8} xxl={6} className={styles.item}>
-          <Card
-            hoverable
-            style={{ width: 220 }}
-            cover={
-              <img
-                alt={ele.goodsName}
-                src={`http://127.0.0.1:7777/imgs/${ele.goodsPic.split('|')[0]}`}
-                style={{ width: '100%', height: 240 }}
+        <Link to={`/goodsDetial?id=${ele.goodsId}`}>
+          <Col md={8} xxl={6} className={styles.item}>
+            <Card
+              hoverable
+              style={{ width: 220 }}
+              cover={
+                <img
+                  alt={ele.goodsName}
+                  src={`http://127.0.0.1:7777/imgs/${
+                    ele.goodsPic.split('|')[0]
+                  }`}
+                  style={{ width: '100%', height: 240 }}
+                />
+              }
+            >
+              <Meta
+                title={ele.goodsName}
+                description={`${ele.goodsDesc.slice(0, 10)}...`}
               />
-            }
-          >
-            <Meta
-              title={ele.goodsName}
-              description={`${ele.goodsDesc.slice(0, 10)}...`}
-            />
-          </Card>
-        </Col>
+            </Card>
+          </Col>
+        </Link>
       )
     })
     return (
       <div>
         <Row gutter={16} className={styles.wrap}>
-          {/*<Link to="/register">*/}
           {renderContent}
-          {/*</Link>*/}
         </Row>
         <Pagination
           {...pageProps}

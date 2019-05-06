@@ -40,7 +40,6 @@ export default modelExtend(model, {
         goodsType,
         keyWords,
       }
-      console.log('params', params)
       const res = yield call(queryGoods, params)
       const { code, data } = res
       if (code === '200') {

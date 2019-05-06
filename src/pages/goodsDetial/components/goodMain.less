@@ -1,0 +1,78 @@
+.content {
+  width: 100%;
+  margin-top: 10px;
+  .carousel {
+    display: inline-block;
+    float: left;
+    width: 300px;
+    height: 420px;
+    margin-right: 10px;
+  }
+  .goodDesc {
+    display: inline-block;
+    width: calc(~'100% - 310px');
+    height: 420px;
+    .goodName {
+      width: 100%;
+      height: 89px;
+      line-height: 89px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+      padding-left: 10px;
+    }
+    .goodPrice {
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      background: #eee;
+      font-size: 14px;
+      color: #000;
+      border: 1px solid #999;
+      span {
+        display: inline-block;
+        height: 60px;
+        line-height: 60px;
+      }
+    }
+    .item {
+      display: inline-block;
+      width: 20%;
+      text-align: right;
+      margin-right: 10px;
+    }
+    .userInfo {
+      width: 100%;
+      background: #eee;
+      font-size: 14px;
+      color: #000;
+      border: 1px solid #999;
+      border-top: none;
+      .userPhone {
+        height: 60px;
+        line-height: 60px;
+      }
+      .other {
+        height: 90px;
+        line-height: 90px;
+        .QQ {
+          display: inline-block;
+          width: 65%;
+          .otherItem {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+          }
+        }
+      }
+    }
+    .btnWrap {
+      display: flex;
+      width: 100%;
+      height: 100px;
+      line-height: 100px;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

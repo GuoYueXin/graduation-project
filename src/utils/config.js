@@ -76,7 +76,15 @@ module.exports = {
       zhName: '发布闲置',
       route: '/releaseIdle',
     },
+    {
+      id: '6',
+      menuParentId: '-1',
+      icon: 'undo',
+      name: '商品详情',
+      zhName: '商品详情',
+      route: '/goodsDetial',
+    },
   ],
-  visit: ['1', '2', '3', '4', '5'],
+  visit: ['1', '2', '3', '4', '5', '6'],
   showSilderList: ['dashboard'],
 }

@@ -13,6 +13,8 @@ export default {
   addGoods: 'POST /goods/addGoods',
   queryGoods: '/goods/queryGoods',
 
+  queryGoodsDetail: '/goods/queryGoodsDetial',
+
   queryUser: '/user/:id',
   queryUserList: '/users',
   updateUser: 'Patch /user/:id',
