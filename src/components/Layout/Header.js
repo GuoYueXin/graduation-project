@@ -41,7 +41,7 @@ class Header extends PureComponent {
         )}
         {getSession('isLogin') === 'yes' && (
           <MenuItem key="myIdle">
-            <Link to="#">我的闲置</Link>
+            <Link to="/myGoods">我的闲置</Link>
           </MenuItem>
         )}
         {getSession('isLogin') === 'yes' && (

@@ -12,8 +12,10 @@ export default {
   // goods
   addGoods: 'POST /goods/addGoods',
   queryGoods: '/goods/queryGoods',
-
+  queryByUserId: '/goods/queryByUserId',
   queryGoodsDetail: '/goods/queryGoodsDetial',
+  updateStatus: 'POST /goods/updateStatus',
+  updateGoodsNum: 'POST /goods/updateGoodsNum',
 
   // cart
   addCart: 'POST /cart/add',

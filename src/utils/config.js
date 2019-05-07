@@ -92,7 +92,15 @@ module.exports = {
       zhName: '收藏',
       route: '/collect',
     },
+    {
+      id: '8',
+      menuParentId: '-1',
+      icon: 'undo',
+      name: '我的闲置',
+      zhName: '我的闲置',
+      route: '/myGoods',
+    },
   ],
-  visit: ['1', '2', '3', '4', '5', '6', '7'],
+  visit: ['1', '2', '3', '4', '5', '6', '7', '8'],
   showSilderList: ['dashboard'],
 }
