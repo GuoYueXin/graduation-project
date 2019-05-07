@@ -1,10 +1,18 @@
 import modelExtend from 'dva-model-extend'
 import { message } from 'antd'
+import router from 'umi/router'
 import { pathMatchRegexp } from 'utils'
 import { model } from 'utils/model'
 import api from 'api'
 
-const { queryGoodsDetail } = api
+const {
+  queryGoodsDetail,
+  addCart,
+  addCollect,
+  queryIsCollect,
+  cancelCollect,
+  addOrder,
+} = api
 
 export default modelExtend(model, {
   namespace: 'goodsDetial',
@@ -12,11 +20,13 @@ export default modelExtend(model, {
     msg: 'goodsDetial',
     good: {},
     user: {},
+    isCollect: false,
+    num: 1,
   },
   subscriptions: {
     setupHistory({ dispatch, history }) {
       history.listen(({ pathname, query }) => {
-        if (query) {
+        if (pathname === '/goodsDetial' && query) {
           dispatch({
             type: 'query',
             payload: {
@@ -30,7 +40,6 @@ export default modelExtend(model, {
   effects: {
     *query({ payload }, { call, put }) {
       const res = yield call(queryGoodsDetail, payload)
-      console.log(res)
       const { code, data } = res
       if (code === '200') {
         yield put({
@@ -40,6 +49,90 @@ export default modelExtend(model, {
             user: data.userInfo,
           },
         })
+        const params = {
+          goodsId: data.goodInfo.goodsId,
+          userId: data.userInfo.userId,
+        }
+        const result = yield call(queryIsCollect, params)
+        if (result.code === '200') {
+          yield put({
+            type: 'updateState',
+            payload: {
+              isCollect: result.data === 0 ? false : true,
+            },
+          })
+        }
+      } else {
+        message.error('网络出小差啦！！！')
+      }
+    },
+    *addShopCart({ payload }, { call, select }) {
+      const { good, user } = yield select(_ => _.goodsDetial)
+      const params = {
+        goodsId: good.goodsId,
+        userId: user.userId,
+        num: 1,
+      }
+      const res = yield call(addCart, params)
+      if (res.code === '200') {
+        message.success('添加购物车成功')
+      } else {
+        message.error('网络出小差啦！！！')
+      }
+    },
+    *addCollect({ payload }, { put, call, select }) {
+      const { good, user } = yield select(_ => _.goodsDetial)
+      const params = {
+        goodsId: good.goodsId,
+        userId: user.userId,
+      }
+      const res = yield call(addCollect, params)
+      if (res.code === '200') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            isCollect: true,
+          },
+        })
+        message.success('收藏成功')
+      } else {
+        message.error('网络出小差啦！！！')
+      }
+    },
+    *cancelCollect({ payload }, { call, put, select }) {
+      const { good, user } = yield select(_ => _.goodsDetial)
+      const params = {
+        goodsId: good.goodsId,
+        userId: user.userId,
+      }
+      const res = yield call(cancelCollect, params)
+      if (res.code === '200') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            isCollect: false,
+          },
+        })
+        message.success('取消收藏成功')
+      } else {
+        message.error('网络出小差啦！！！')
+      }
+    },
+    *addOrder({ payload }, { put, call, select }) {
+      const { good, user, num } = yield select(_ => _.goodsDetial)
+      const params = {
+        goodsId: good.goodsId,
+        userId: user.userId,
+        num,
+      }
+      const res = yield call(addOrder, params)
+      if (res.code === '200') {
+        message.success(
+          '下单成功，订单消息已经发送给卖家，请及时查看相关消息！'
+        )
+        setTimeout(() => {
+          router.push('/home')
+        }, 2000)
       } else {
         message.error('网络出小差啦！！！')
       }

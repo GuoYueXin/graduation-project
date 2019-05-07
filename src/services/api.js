@@ -15,6 +15,17 @@ export default {
 
   queryGoodsDetail: '/goods/queryGoodsDetial',
 
+  // cart
+  addCart: 'POST /cart/add',
+
+  // collect
+  addCollect: 'POST /collect/add',
+  queryIsCollect: 'POST /collect/queryIsCollect',
+  cancelCollect: 'POST /collect/cancel',
+
+  // order
+  addOrder: 'POST /order/add',
+
   queryUser: '/user/:id',
   queryUserList: '/users',
   updateUser: 'Patch /user/:id',

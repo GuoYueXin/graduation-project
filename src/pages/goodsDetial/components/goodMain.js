@@ -1,15 +1,76 @@
 import React, { PureComponent } from 'react'
 import { Carousel } from 'react-responsive-carousel'
-import { Button } from 'antd'
+import { Button, message, InputNumber, Modal } from 'antd'
+import { getSession } from 'utils'
 import styles from './goodMain.less'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
+const confirm = Modal.confirm
+
 class index extends PureComponent {
+  handleChangeNum = value => {
+    const { changeNum } = this.props
+    changeNum(value)
+  }
+
+  handleAddCart = () => {
+    const { addShopCart } = this.props
+    const isLogin = getSession('isLogin')
+    if (isLogin) {
+      addShopCart()
+    } else {
+      message.warning('您还没有登录，快去登录吧！')
+    }
+  }
+
+  handleCollect = e => {
+    const { addCollect, cancelCollect } = this.props
+    const isLogin = getSession('isLogin')
+    if (isLogin) {
+      if (e.target.innerText === '收 藏') {
+        addCollect()
+      } else {
+        cancelCollect()
+      }
+    } else {
+      message.warning('您还没有登录，快去登录吧！')
+    }
+  }
+
+  handleConfirm = () => {
+    const { addOrder } = this.props
+    const isLogin = getSession('isLogin')
+    if (isLogin) {
+      confirm({
+        title: '确定要购买该商品吗?',
+        content: '确定后将会向卖家发送订单消息。',
+        cancelText: '取消',
+        okText: '确定',
+        onOk() {
+          addOrder()
+        },
+        onCancel() {
+          console.log('Cancel')
+        },
+      })
+    } else {
+      message.warning('您还没有登录，快去登录吧！')
+    }
+  }
+
   render() {
-    const { user, good } = this.props
+    const { user, good, isCollect } = this.props
     const carouselProps = {
       infiniteLoop: true,
       autoPlay: true,
+      showStatus: false,
+      showThumbs: false,
+    }
+    const inputNumPoros = {
+      defaultValue: 1,
+      onChange: this.handleChangeNum,
+      min: 1,
+      max: good.goodsNum,
     }
     const renderDom =
       good.goodsPic &&
@@ -39,6 +100,13 @@ class index extends PureComponent {
               <span className={styles.item}>手机号:</span>
               {user.phoneNumber}
             </div>
+            <div className={styles.numWrap}>
+              <span className={styles.item}>数量:</span>
+              <InputNumber {...inputNumPoros} />
+              {good.goodsNum < 2 && (
+                <span style={{ color: 'red', marginLeft: 10 }}>即将售罄</span>
+              )}
+            </div>
             <div className={styles.other}>
               <span className={styles.item} style={{ float: 'left' }}>
                 其他联系方式:
@@ -50,9 +118,15 @@ class index extends PureComponent {
             </div>
           </div>
           <div className={styles.btnWrap}>
-            <Button type="primary">立即购买</Button>
-            <Button type="primary">加入购物车</Button>
-            <Button type="primary">收藏</Button>
+            <Button type="primary" onClick={this.handleConfirm}>
+              立即购买
+            </Button>
+            <Button type="primary" onClick={this.handleAddCart}>
+              加入购物车
+            </Button>
+            <Button type="primary" onClick={this.handleCollect}>
+              {isCollect ? '取消收藏' : '收藏'}
+            </Button>
           </div>
         </div>
       </div>

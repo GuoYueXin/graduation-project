@@ -36,10 +36,14 @@ class model extends Component {
 
   handleConfirm() {
     const { form, onHandleConfirm } = this.props
-    const { validateFieldsAndScroll } = form
+    const { validateFieldsAndScroll, resetFields } = form
     validateFieldsAndScroll((errors, values) => {
       if (!errors) {
         onHandleConfirm(values)
+        resetFields()
+        this.setState({
+          fileList: [],
+        })
       }
     })
   }
@@ -87,9 +91,9 @@ class model extends Component {
             ],
           })(
             <Select placeholder="请选择商品类别">
-              <Option value={0}>学习用品</Option>
-              <Option value={1}>生活用品</Option>
-              <Option value={2}>娱乐用品</Option>
+              <Option value={1}>学习用品</Option>
+              <Option value={2}>生活用品</Option>
+              <Option value={3}>娱乐用品</Option>
             </Select>
           )}
         </FormItem>
@@ -128,6 +132,7 @@ class model extends Component {
                 listType="picture-card"
                 onPreview={this.handlePreview}
                 onChange={this.handleChange}
+                fileList={fileList}
               >
                 {fileList.length >= 6 ? null : uploadButton}
               </Upload>

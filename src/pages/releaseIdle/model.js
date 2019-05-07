@@ -19,15 +19,23 @@ export default modelExtend(model, {
   effects: {
     *addGoods({ payload }, { call, put, select }) {
       const user = JSON.parse(getSession('user'))
-      console.log(user)
       const params = {
         ...payload,
         userId: user.userId,
       }
-      console.log('params', params)
       const data = yield call(addGoods, params)
-      console.log(data)
       if (data.code === '200') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            goodsName: '',
+            goodsType: '',
+            goodsPrice: '',
+            goodsPic: '',
+            goodsDesc: '',
+            goodsNum: 1,
+          },
+        })
         message.success('商品发布成功')
       } else {
         message.error('商品发布失败，请稍后重试')

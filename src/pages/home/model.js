@@ -22,13 +22,17 @@ export default modelExtend(model, {
   },
   subscriptions: {
     setupHistory({ dispatch, history }) {
-      dispatch({
-        type: 'query',
-        payload: {
-          pageSize: 12,
-          current: 1,
-          goodsType: 0,
-        },
+      history.listen(({ pathname }) => {
+        if (pathname === '/home') {
+          dispatch({
+            type: 'query',
+            payload: {
+              pageSize: 12,
+              current: 1,
+              goodsType: 0,
+            },
+          })
+        }
       })
     },
   },

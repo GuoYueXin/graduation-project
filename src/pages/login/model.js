@@ -11,8 +11,9 @@ export default {
   },
   subscriptions: {
     setupHistory({ dispatch, history }) {
-      delSession('isLogin');
-    }
+      delSession('isLogin')
+      delSession('user')
+    },
   },
 
   effects: {
@@ -20,7 +21,7 @@ export default {
       const data = yield call(loginUser, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.code === '200') {
-        setSession('isLogin', 'yes');
+        setSession('isLogin', 'yes')
         setSession('user', JSON.stringify(data.data))
         yield put({
           type: 'updateState',
