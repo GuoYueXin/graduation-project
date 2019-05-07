@@ -34,15 +34,21 @@ class Header extends PureComponent {
         <MenuItem key="home">
           <Link to="/home">首页</Link>
         </MenuItem>
-        {getSession('isLogin') === 'yes' && <MenuItem key="publish">
-          <Link to="/releaseIdle">发布闲置</Link>
-        </MenuItem>}
-        {getSession('isLogin') === 'yes' && <MenuItem key="myIdle">
-          <Link to="#">我的闲置</Link>
-        </MenuItem>}
-        {getSession('isLogin') === 'yes' && <MenuItem key="myStore">
-          <Link to="#">我的店铺</Link>
-        </MenuItem>}
+        {getSession('isLogin') === 'yes' && (
+          <MenuItem key="publish">
+            <Link to="/releaseIdle">发布闲置</Link>
+          </MenuItem>
+        )}
+        {getSession('isLogin') === 'yes' && (
+          <MenuItem key="myIdle">
+            <Link to="#">我的闲置</Link>
+          </MenuItem>
+        )}
+        {getSession('isLogin') === 'yes' && (
+          <MenuItem key="myStore">
+            <Link to="#">我的店铺</Link>
+          </MenuItem>
+        )}
       </Menu>,
     ]
 
@@ -54,7 +60,9 @@ class Header extends PureComponent {
               <span style={{ color: '#999', marginRight: 4 }}>
                 <Trans>Hi,</Trans>
               </span>
-              <span>{username ? username : <Link to="/login" >请登录</Link>}</span>
+              <span>
+                {username ? username : <Link to="/login">请登录</Link>}
+              </span>
               <Avatar style={{ marginLeft: 8 }} src={avatar} />
             </Fragment>
           }
@@ -99,22 +107,23 @@ class Header extends PureComponent {
       )
     }
 
-    getSession('isLogin') === 'yes' && rightContent.unshift(
-      <Menu mode="horizontal">
-        <MenuItem key="collect">
-          <Link to="#">收藏</Link>
-        </MenuItem>
-        <MenuItem key="message">
-          <Link to="#">消息中心</Link>
-        </MenuItem>
-        <MenuItem key="buyCart">
-          <Link to="#">购物车</Link>
-        </MenuItem>
-        <MenuItem key="service">
-          <Link to="#">联系客服</Link>
-        </MenuItem>
-      </Menu>
-    )
+    getSession('isLogin') === 'yes' &&
+      rightContent.unshift(
+        <Menu mode="horizontal">
+          <MenuItem key="collect">
+            <Link to="/collect">收藏</Link>
+          </MenuItem>
+          <MenuItem key="message">
+            <Link to="#">消息中心</Link>
+          </MenuItem>
+          <MenuItem key="buyCart">
+            <Link to="#">购物车</Link>
+          </MenuItem>
+          <MenuItem key="service">
+            <Link to="#">联系客服</Link>
+          </MenuItem>
+        </Menu>
+      )
 
     return (
       <Layout.Header

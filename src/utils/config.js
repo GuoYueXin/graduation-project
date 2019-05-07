@@ -84,7 +84,15 @@ module.exports = {
       zhName: '商品详情',
       route: '/goodsDetial',
     },
+    {
+      id: '7',
+      menuParentId: '-1',
+      icon: 'undo',
+      name: '收藏',
+      zhName: '收藏',
+      route: '/collect',
+    },
   ],
-  visit: ['1', '2', '3', '4', '5', '6'],
+  visit: ['1', '2', '3', '4', '5', '6', '7'],
   showSilderList: ['dashboard'],
 }

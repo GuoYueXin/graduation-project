@@ -1,7 +1,7 @@
 import modelExtend from 'dva-model-extend'
 import { message } from 'antd'
 import router from 'umi/router'
-import { pathMatchRegexp } from 'utils'
+import { pathMatchRegexp, getSession } from 'utils'
 import { model } from 'utils/model'
 import api from 'api'
 
@@ -13,6 +13,7 @@ const {
   cancelCollect,
   addOrder,
 } = api
+const user = JSON.parse(getSession('user'))
 
 export default modelExtend(model, {
   namespace: 'goodsDetial',
@@ -51,7 +52,7 @@ export default modelExtend(model, {
         })
         const params = {
           goodsId: data.goodInfo.goodsId,
-          userId: data.userInfo.userId,
+          userId: user.userId,
         }
         const result = yield call(queryIsCollect, params)
         if (result.code === '200') {
@@ -67,7 +68,7 @@ export default modelExtend(model, {
       }
     },
     *addShopCart({ payload }, { call, select }) {
-      const { good, user } = yield select(_ => _.goodsDetial)
+      const { good } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
         userId: user.userId,
@@ -81,7 +82,7 @@ export default modelExtend(model, {
       }
     },
     *addCollect({ payload }, { put, call, select }) {
-      const { good, user } = yield select(_ => _.goodsDetial)
+      const { good } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
         userId: user.userId,
@@ -100,7 +101,7 @@ export default modelExtend(model, {
       }
     },
     *cancelCollect({ payload }, { call, put, select }) {
-      const { good, user } = yield select(_ => _.goodsDetial)
+      const { good } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
         userId: user.userId,
@@ -119,7 +120,7 @@ export default modelExtend(model, {
       }
     },
     *addOrder({ payload }, { put, call, select }) {
-      const { good, user, num } = yield select(_ => _.goodsDetial)
+      const { good, num } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
         userId: user.userId,

@@ -22,6 +22,7 @@ export default {
   addCollect: 'POST /collect/add',
   queryIsCollect: 'POST /collect/queryIsCollect',
   cancelCollect: 'POST /collect/cancel',
+  queryCollect: '/collect/query',
 
   // order
   addOrder: 'POST /order/add',
