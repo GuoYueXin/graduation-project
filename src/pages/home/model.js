@@ -23,7 +23,7 @@ export default modelExtend(model, {
   subscriptions: {
     setupHistory({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        if (pathname === '/home') {
+        if (pathname === '/home' || pathname === '/en/home') {
           dispatch({
             type: 'query',
             payload: {

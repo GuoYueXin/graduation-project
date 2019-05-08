@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
-import styles from './index.less'
 import List from './components/List'
 
 @connect(({ loading, dispatch, buyOrder }) => ({ loading, dispatch, buyOrder }))
@@ -37,7 +36,7 @@ class BuyOrder extends PureComponent {
     }
 
     return (
-      <div className={styles.wrap}>
+      <div>
         <List {...listProps} />
       </div>
     )
