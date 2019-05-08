@@ -30,7 +30,8 @@ export default function request(options) {
     }
     url = domain + url
   } catch (e) {
-    message.error(e.message)
+    throw e
+    // message.error(e.message)
   }
 
   options.url =
@@ -58,7 +59,9 @@ export default function request(options) {
       } else {
         result.data = data
       }
-
+      if (result.code !== '200') {
+        message.error(result.msg)
+      }
       return Promise.resolve({
         // success: true,
         // message: statusText,

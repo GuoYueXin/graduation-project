@@ -1,4 +1,5 @@
 import { router, pathMatchRegexp, setSession, delSession } from 'utils'
+import { message } from 'antd'
 import api from 'api'
 
 const { loginUser } = api
@@ -11,8 +12,12 @@ export default {
   },
   subscriptions: {
     setupHistory({ dispatch, history }) {
-      delSession('isLogin')
-      delSession('user')
+      history.listen(({ pathname }) => {
+        if (pathname === '/en/login' || pathname === '/login') {
+          delSession('isLogin')
+          delSession('user')
+        }
+      })
     },
   },
 
@@ -37,8 +42,6 @@ export default {
         } else {
           router.push('/home')
         }
-      } else {
-        throw data
       }
     },
   },

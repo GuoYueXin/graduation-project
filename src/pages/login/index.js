@@ -45,10 +45,16 @@ class Login extends PureComponent {
                     rules: [
                       {
                         required: true,
-                        message: '请输入用户名',
+                        message: '请输入手机号',
                       },
                     ],
-                  })(<input type="text" autoComplete="off" />)}
+                  })(
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      placeholder="请输入手机号"
+                    />
+                  )}
                 </FormItem>
                 <FormItem>
                   {getFieldDecorator('password', {
@@ -58,7 +64,13 @@ class Login extends PureComponent {
                         message: '请输入密码',
                       },
                     ],
-                  })(<input type="password" onKeyUp={submit} />)}
+                  })(
+                    <input
+                      type="password"
+                      onKeyUp={submit}
+                      placeholder="请输入密码"
+                    />
+                  )}
                 </FormItem>
               </Form>
             </div>

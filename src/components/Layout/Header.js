@@ -1,11 +1,10 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Link from 'umi/link'
-import { Menu, Icon, Layout, Avatar, Popover, Badge, List } from 'antd'
+import { Menu, Layout, Avatar } from 'antd'
 import { Ellipsis } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
 import { setLocale, getSession } from 'utils'
-import moment from 'moment'
 import classnames from 'classnames'
 import config from 'config'
 import styles from './Header.less'
@@ -90,20 +89,7 @@ class Header extends PureComponent {
             setLocale(data.key)
           }}
           mode="horizontal"
-        >
-          <SubMenu title={<Avatar size="small" src={currentLanguage.flag} />}>
-            {languages.map(item => (
-              <Menu.Item key={item.key}>
-                <Avatar
-                  size="small"
-                  style={{ marginRight: 8 }}
-                  src={item.flag}
-                />
-                {item.title}
-              </Menu.Item>
-            ))}
-          </SubMenu>
-        </Menu>
+        />
       )
     }
 

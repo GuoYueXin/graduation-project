@@ -1,4 +1,3 @@
-@import '~themes/vars';
 .wrap {
   width: 100vw;
   height: 100vh;
@@ -21,7 +20,7 @@
       margin: 15px auto;
       text-align: right;
       border-radius: 6px;
-      box-shadow: 3px 4px 15px rgba(0,0,0,0.45);
+      box-shadow: 3px 4px 15px rgba(0, 0, 0, 0.45);
       background: url(../../../public/logo.png) no-repeat;
       background-size: cover;
     }
@@ -55,6 +54,9 @@
           border-bottom: 1px solid #ccc;
           outline: unset;
         }
+        input::-webkit-input-placeholder {
+          color: #fff;
+        }
       }
       button {
         width: 100%;
@@ -74,7 +76,7 @@
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
       }
       .helpTips {
-        .forget{
+        .forget {
           color: #ccc;
         }
         .register {
@@ -82,7 +84,7 @@
           color: #ccc;
         }
         .forget:hover,
-        .register:hover{
+        .register:hover {
           color: #eee;
         }
       }

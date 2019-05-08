@@ -38,11 +38,10 @@ export default modelExtend(model, {
   },
   effects: {
     *query({ payload }, { call, put, select }) {
-      const { pageOption, goodsType, keyWords } = yield select(_ => _.home)
+      const { pageOption, goodsType } = yield select(_ => _.home)
       const params = {
         ...payload,
         goodsType,
-        keyWords,
       }
       const res = yield call(queryGoods, params)
       const { code, data } = res
