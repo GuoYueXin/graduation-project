@@ -19,6 +19,8 @@ export default {
 
   // cart
   addCart: 'POST /cart/add',
+  queryShopCart: '/cart/query',
+  deleteShopCart: 'POST /cart/delete',
 
   // collect
   addCollect: 'POST /collect/add',
@@ -28,6 +30,10 @@ export default {
 
   // order
   addOrder: 'POST /order/add',
+  queryBuyOrder: '/order/queryBuyOrder',
+  querySellOrder: '/order/querySellOrder',
+  updateOrderStatus: 'POST /order/updateStatus',
+  deleteOrder: 'order/delete',
 
   queryUser: '/user/:id',
   queryUserList: '/users',

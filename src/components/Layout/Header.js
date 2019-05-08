@@ -46,7 +46,7 @@ class Header extends PureComponent {
         )}
         {getSession('isLogin') === 'yes' && (
           <MenuItem key="myStore">
-            <Link to="#">我的店铺</Link>
+            <Link to="/buyOrder">订单中心</Link>
           </MenuItem>
         )}
       </Menu>,
@@ -117,7 +117,7 @@ class Header extends PureComponent {
             <Link to="#">消息中心</Link>
           </MenuItem>
           <MenuItem key="buyCart">
-            <Link to="#">购物车</Link>
+            <Link to="/shopCart">购物车</Link>
           </MenuItem>
           <MenuItem key="service">
             <Link to="#">联系客服</Link>

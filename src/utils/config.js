@@ -38,13 +38,6 @@ module.exports = {
   },
   menu: [
     {
-      id: '1',
-      icon: 'laptop',
-      name: 'Dashboard',
-      zhName: '仪表盘',
-      route: '/dashboard',
-    },
-    {
       id: '2',
       menuParentId: '-1',
       icon: 'user-add',
@@ -100,7 +93,29 @@ module.exports = {
       zhName: '我的闲置',
       route: '/myGoods',
     },
+    {
+      id: '9',
+      menuParentId: '-1',
+      icon: 'undo',
+      name: '购物车',
+      zhName: '购物车',
+      route: '/shopCart',
+    },
+    {
+      id: '10',
+      icon: 'ordered-list',
+      name: '我买到的',
+      zhName: '我买到的',
+      route: '/buyOrder',
+    },
+    {
+      id: '11',
+      icon: 'ordered-list',
+      name: '我卖出的',
+      zhName: '我卖出的',
+      route: '/sellOrder',
+    },
   ],
-  visit: ['1', '2', '3', '4', '5', '6', '7', '8'],
-  showSilderList: ['dashboard'],
+  visit: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+  showSilderList: ['buyOrder', 'sellOrder'],
 }

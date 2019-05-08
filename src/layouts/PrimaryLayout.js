@@ -58,7 +58,7 @@ class PrimaryLayout extends PureComponent {
     const { isMobile } = this.state
     const { onCollapseChange } = this
 
-    const isShowSilder = showSilderList.includes(locationPathname.split('/')[2])
+    const isShowSilder = showSilderList.includes(locationPathname.split('/')[1])
 
     const lang = langFromPath(location.pathname)
     const newRouteList =

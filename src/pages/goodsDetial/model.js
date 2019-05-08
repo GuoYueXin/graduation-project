@@ -13,7 +13,6 @@ const {
   cancelCollect,
   addOrder,
 } = api
-const user = JSON.parse(getSession('user'))
 
 export default modelExtend(model, {
   namespace: 'goodsDetial',
@@ -40,6 +39,7 @@ export default modelExtend(model, {
   },
   effects: {
     *query({ payload }, { call, put }) {
+      const user = JSON.parse(getSession('user'))
       const res = yield call(queryGoodsDetail, payload)
       const { code, data } = res
       if (code === '200') {
@@ -68,6 +68,7 @@ export default modelExtend(model, {
       }
     },
     *addShopCart({ payload }, { call, select }) {
+      const user = JSON.parse(getSession('user'))
       const { good } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
@@ -82,6 +83,7 @@ export default modelExtend(model, {
       }
     },
     *addCollect({ payload }, { put, call, select }) {
+      const user = JSON.parse(getSession('user'))
       const { good } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
@@ -101,6 +103,7 @@ export default modelExtend(model, {
       }
     },
     *cancelCollect({ payload }, { call, put, select }) {
+      const user = JSON.parse(getSession('user'))
       const { good } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
@@ -120,10 +123,15 @@ export default modelExtend(model, {
       }
     },
     *addOrder({ payload }, { put, call, select }) {
+      const user = JSON.parse(getSession('user'))
       const { good, num } = yield select(_ => _.goodsDetial)
       const params = {
         goodsId: good.goodsId,
+        goodsPrice: good.goodsPrice,
+        goodsName: good.goodsName,
+        sellUserId: good.userId,
         userId: user.userId,
+        userPhone: user.phoneNumber,
         num,
       }
       const res = yield call(addOrder, params)
