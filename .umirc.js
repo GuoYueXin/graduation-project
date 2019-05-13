@@ -77,6 +77,10 @@ export default {
       target: 'http://127.0.0.1:7777',
       changeOrigin: true,
     },
+    '/message': {
+      target: 'http://127.0.0.1:7777',
+      changeOrigin: true,
+    },
     '/order': {
       target: 'http://127.0.0.1:7777',
       changeOrigin: true,

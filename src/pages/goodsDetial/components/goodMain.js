@@ -60,6 +60,7 @@ class index extends PureComponent {
 
   render() {
     const { user, good, isCollect } = this.props
+    const userInfo = JSON.parse(getSession('user'))
     const carouselProps = {
       infiniteLoop: true,
       autoPlay: true,
@@ -103,8 +104,10 @@ class index extends PureComponent {
             <div className={styles.numWrap}>
               <span className={styles.item}>数量:</span>
               <InputNumber {...inputNumPoros} />
-              {good.goodsNum < 2 && (
-                <span style={{ color: 'red', marginLeft: 10 }}>即将售罄</span>
+              {good.goodsNum <= 2 && (
+                <span style={{ color: 'red', marginLeft: 10 }}>
+                  即将售罄，仅剩{good.goodsNum}件
+                </span>
               )}
             </div>
             <div className={styles.other}>
@@ -118,10 +121,18 @@ class index extends PureComponent {
             </div>
           </div>
           <div className={styles.btnWrap}>
-            <Button type="primary" onClick={this.handleConfirm}>
+            <Button
+              type="primary"
+              onClick={this.handleConfirm}
+              disabled={user.userId === userInfo.userId}
+            >
               立即购买
             </Button>
-            <Button type="primary" onClick={this.handleAddCart}>
+            <Button
+              type="primary"
+              onClick={this.handleAddCart}
+              disabled={user.userId === userInfo.userId}
+            >
               加入购物车
             </Button>
             <Button type="primary" onClick={this.handleCollect}>

@@ -99,14 +99,8 @@ class Header extends PureComponent {
           <MenuItem key="collect">
             <Link to="/collect">收藏</Link>
           </MenuItem>
-          <MenuItem key="message">
-            <Link to="#">消息中心</Link>
-          </MenuItem>
           <MenuItem key="buyCart">
             <Link to="/shopCart">购物车</Link>
-          </MenuItem>
-          <MenuItem key="service">
-            <Link to="#">联系客服</Link>
           </MenuItem>
         </Menu>
       )

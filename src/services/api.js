@@ -35,6 +35,10 @@ export default {
   updateOrderStatus: 'POST /order/updateStatus',
   deleteOrder: 'order/delete',
 
+  // message
+  queryMessage: '/message/query',
+  updateMessage: '/message/update',
+
   queryUser: '/user/:id',
   queryUserList: '/users',
   updateUser: 'Patch /user/:id',

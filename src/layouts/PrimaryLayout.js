@@ -6,7 +6,6 @@ import withRouter from 'umi/withRouter'
 import { connect } from 'dva'
 import { MyLayout } from 'components'
 import { BackTop, Layout } from 'antd'
-import { enquireScreen, unenquireScreen } from 'enquire-js'
 import { config, pathMatchRegexp, langFromPath, getSession } from 'utils'
 import Error from '../pages/404'
 import styles from './PrimaryLayout.less'
@@ -20,21 +19,6 @@ const { Header, Bread, Sider } = MyLayout
 class PrimaryLayout extends PureComponent {
   state = {
     isMobile: false,
-  }
-
-  componentDidMount() {
-    this.enquireHandler = enquireScreen(mobile => {
-      const { isMobile } = this.state
-      if (isMobile !== mobile) {
-        this.setState({
-          isMobile: mobile,
-        })
-      }
-    })
-  }
-
-  componentWillUnmount() {
-    unenquireScreen(this.enquireHandler)
   }
 
   onCollapseChange = collapsed => {
