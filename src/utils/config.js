@@ -115,7 +115,15 @@ module.exports = {
       zhName: '我卖出的',
       route: '/sellOrder',
     },
+    {
+      id: '12',
+      icon: 'ordered-list',
+      menuParentId: '-1',
+      name: '用户中心',
+      zhName: '用户中心',
+      route: '/userCenter',
+    },
   ],
-  visit: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+  visit: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
   showSilderList: ['buyOrder', 'sellOrder'],
 }

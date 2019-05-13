@@ -61,7 +61,14 @@ class index extends PureComponent {
     return (
       <div className={styles.wrap}>
         <div className={styles.userTitle}>
-          <image className={styles.userIcon} src={user.userIcon} />
+          <image
+            className={styles.userIcon}
+            style={{
+              background: `url(http://127.0.0.1:7777/imgs/${
+                user.userIcon
+              }) no-repeat`,
+            }}
+          />
           <span className={styles.userName}>{user.username}的店铺</span>
         </div>
         <GoodMain {...goodMainProps} />

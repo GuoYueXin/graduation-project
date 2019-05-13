@@ -18,6 +18,13 @@ class search extends Component {
 
   render() {
     const { goodsType } = this.props
+    const carouselProps = {
+      autoplay: true,
+      autoplaySpeed: 2000,
+      dots: true,
+      infinite: true,
+      className: 'slider-test',
+    }
     return (
       <div className={styles.wrap}>
         <div className={styles.search}>
@@ -29,7 +36,7 @@ class search extends Component {
           />
         </div>
         <div className={styles.loopPic}>
-          <Carousel autoplay autoplaySpeed={2000}>
+          <Carousel {...carouselProps}>
             <div>
               <img
                 src="https://img.alicdn.com/simba/img/TB14nTMMkPoK1RjSZKbSut1IXXa.jpg"

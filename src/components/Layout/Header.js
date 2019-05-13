@@ -2,10 +2,10 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Link from 'umi/link'
 import { Menu, Layout, Avatar } from 'antd'
-import { Ellipsis } from 'ant-design-pro'
 import { Trans, withI18n } from '@lingui/react'
 import { setLocale, getSession } from 'utils'
 import classnames from 'classnames'
+import router from 'umi/router'
 import config from 'config'
 import styles from './Header.less'
 
@@ -17,6 +17,7 @@ const MenuItem = Menu.Item
 class Header extends PureComponent {
   handleClickMenu = e => {
     e.key === 'SignOut' && this.props.onSignOut()
+    e.key === 'userCenter' && router.push('/userCenter')
   }
   render() {
     const {
@@ -62,7 +63,10 @@ class Header extends PureComponent {
               <span>
                 {username ? username : <Link to="/login">请登录</Link>}
               </span>
-              <Avatar style={{ marginLeft: 8 }} src={avatar} />
+              <Avatar
+                style={{ marginLeft: 8 }}
+                src={`http://127.0.0.1:7777/imgs/${avatar}`}
+              />
             </Fragment>
           }
         >
@@ -71,6 +75,7 @@ class Header extends PureComponent {
               <Trans>退出登录</Trans>
             </Menu.Item>
           )}
+          {username && <Menu.Item key="userCenter">用户中心</Menu.Item>}
         </SubMenu>
       </Menu>,
     ]

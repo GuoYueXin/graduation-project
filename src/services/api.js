@@ -39,6 +39,9 @@ export default {
   queryMessage: '/message/query',
   updateMessage: '/message/update',
 
+  // user
+  updateUserInfo: 'POST /user/updateInfo',
+
   queryUser: '/user/:id',
   queryUserList: '/users',
   updateUser: 'Patch /user/:id',
